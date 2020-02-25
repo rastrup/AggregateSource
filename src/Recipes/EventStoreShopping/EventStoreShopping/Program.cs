@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using AggregateSource;
 using AggregateSource.EventStore;
 using AggregateSource.EventStore.Resolvers;
@@ -15,7 +16,7 @@ namespace EventStoreShopping
 {
     class Program
     {
-        static void Main()
+        static async Task Main()
         {
             //Make sure you start an instance of EventStore before running this!!
 
@@ -27,7 +28,7 @@ namespace EventStoreShopping
                         credentials),
                 new IPEndPoint(IPAddress.Loopback, 1113),
                 "EventStoreShopping");
-            connection.Connect();
+            await connection.ConnectAsync();
 
             var unitOfWork = new UnitOfWork();
             var repository = new Repository<ShoppingCart>(
@@ -66,7 +67,7 @@ namespace EventStoreShopping
 
             //Append to stream
             var affected = unitOfWork.GetChanges().Single();
-            connection.AppendToStream(
+            await connection.AppendToStreamAsync(
                 affected.Identifier,
                 affected.ExpectedVersion,
                 affected.Root.GetChanges().
