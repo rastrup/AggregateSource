@@ -5,13 +5,13 @@ namespace AggregateSource.EventStore.Builders
     public class SnapshotBuilder
     {
         readonly object _state;
-        readonly int _version;
+        readonly long _version;
 
         public static readonly SnapshotBuilder Default = new SnapshotBuilder();
 
         SnapshotBuilder() : this(0, new object()) {}
 
-        SnapshotBuilder(int version, object state)
+        SnapshotBuilder(long version, object state)
         {
             _state = state;
             _version = version;
@@ -22,7 +22,7 @@ namespace AggregateSource.EventStore.Builders
             get { return _state; }
         }
 
-        public int Version
+        public long Version
         {
             get { return _version; }
         }
@@ -32,7 +32,7 @@ namespace AggregateSource.EventStore.Builders
             return new SnapshotBuilder(_version, value);
         }
 
-        public SnapshotBuilder WithVersion(int value)
+        public SnapshotBuilder WithVersion(long value)
         {
             return new SnapshotBuilder(value, _state);
         }

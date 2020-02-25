@@ -8,7 +8,7 @@ namespace AggregateSource
     public class AggregateBuilder
     {
         private string _identifier;
-        private int _expectedVersion;
+        private long _expectedVersion;
         private IAggregateRootEntity _root;
 
         /// <summary>
@@ -17,7 +17,7 @@ namespace AggregateSource
         public AggregateBuilder()
         {
             _identifier = null;
-            _expectedVersion = Int32.MinValue;
+            _expectedVersion = long.MinValue;
             _root = null;
         }
 
@@ -46,7 +46,7 @@ namespace AggregateSource
         /// <summary>
         /// Gets the aggregate version.
         /// </summary>
-        public int ExpectedVersion
+        public long ExpectedVersion
         {
             get { return _expectedVersion; }
         }

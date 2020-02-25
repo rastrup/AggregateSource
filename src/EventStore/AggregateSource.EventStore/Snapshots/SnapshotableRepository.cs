@@ -69,7 +69,7 @@ namespace AggregateSource.EventStore.Snapshots
                 return new Optional<TAggregateRoot>((TAggregateRoot) aggregate.Root);
             }
             var snapshot = _reader.ReadOptional(identifier);
-            var version = 1;
+            long version = 1;
             if (snapshot.HasValue)
             {
                 version = snapshot.Value.Version + 1;

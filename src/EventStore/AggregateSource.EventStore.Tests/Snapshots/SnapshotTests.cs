@@ -18,7 +18,7 @@ namespace AggregateSource.EventStore.Snapshots
 
         [Test, Combinatorial]
         public void UsingConstructorReturnsInstanceWithExpectedProperties(
-            [Values(Int32.MinValue, -1, 0, 1, Int32.MaxValue)] int version,
+            [Values(long.MinValue, -1, 0, 1, long.MaxValue)] long version,
             [ValueSource("StateObjects")] object state)
         {
             var sut = _sutBuilder.WithVersion(version).WithState(state).Build();

@@ -9,7 +9,7 @@ namespace AggregateSource
     {
         readonly string _identifier;
         readonly IAggregateRootEntity _root;
-        readonly int _expectedVersion;
+        readonly long _expectedVersion;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Aggregate"/> class.
@@ -19,7 +19,7 @@ namespace AggregateSource
         /// <param name="root">The aggregate root entity.</param>
         /// <exception cref="System.ArgumentNullException">Thrown when the <paramref name="identifier"/> is null.</exception>
         /// <exception cref="System.ArgumentNullException">Thrown when the <paramref name="root"/> is null.</exception>
-        public Aggregate(string identifier, int expectedVersion, IAggregateRootEntity root)
+        public Aggregate(string identifier, long expectedVersion, IAggregateRootEntity root)
         {
             if (identifier == null)
                 throw new ArgumentNullException("identifier");
@@ -44,7 +44,7 @@ namespace AggregateSource
         /// <summary>
         /// Gets the aggregate version.
         /// </summary>
-        public Int32 ExpectedVersion
+        public long ExpectedVersion
         {
             get { return _expectedVersion; }
         }

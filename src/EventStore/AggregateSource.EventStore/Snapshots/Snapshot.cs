@@ -5,7 +5,7 @@
     /// </summary>
     public class Snapshot
     {
-        readonly int _version;
+        readonly long _version;
         readonly object _state;
 
         /// <summary>
@@ -13,7 +13,7 @@
         /// </summary>
         /// <param name="version">The version at which the snapshot was taken.</param>
         /// <param name="state">The state object when the snapshot was taken.</param>
-        public Snapshot(int version, object state)
+        public Snapshot(long version, object state)
         {
             _version = version;
             _state = state;
@@ -25,7 +25,7 @@
         /// <value>
         /// The version.
         /// </value>
-        public int Version
+        public long Version
         {
             get { return _version; }
         }
@@ -68,8 +68,8 @@
         public override int GetHashCode()
         {
             if (_state == null)
-                return _version;
-            return _version ^ _state.GetHashCode();
+                return _version.GetHashCode();
+            return _version.GetHashCode() ^ _state.GetHashCode();
         }
     }
 }

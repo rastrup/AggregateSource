@@ -12,7 +12,7 @@ namespace AggregateSource
             var sut = new AggregateBuilder();
 
             Assert.That(sut.Identifier, Is.Null);
-            Assert.That(sut.ExpectedVersion, Is.EqualTo(Int32.MinValue));
+            Assert.That(sut.ExpectedVersion, Is.EqualTo(long.MinValue));
             Assert.That(sut.Root, Is.Null);
         }
 

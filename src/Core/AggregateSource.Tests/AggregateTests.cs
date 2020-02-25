@@ -10,7 +10,7 @@ namespace AggregateSource
         [Test, Combinatorial]
         public void UsingConstructorWithPartitionReturnsInstanceWithExpectedProperties(
             [ValueSource(typeof (AggregateTestsValueSource), "IdSource")] string identifier,
-            [Values(Int32.MinValue, -1, 0, 1, Int32.MaxValue)] int version)
+            [Values(long.MinValue, -1, 0, 1, long.MaxValue)] long version)
         {
             var root = new AggregateRootEntityStub();
             var sut = new Aggregate(identifier, version, root);
@@ -20,10 +20,11 @@ namespace AggregateSource
             Assert.That(sut.Root, Is.SameAs(root));
         }
 
+
         [Test, Combinatorial]
         public void UsingConstructorWithoutPartitionReturnsInstanceWithExpectedProperties(
             [ValueSource(typeof(AggregateTestsValueSource), "IdSource")] string identifier,
-            [Values(Int32.MinValue, -1, 0, 1, Int32.MaxValue)] int version)
+            [Values(long.MinValue, -1, 0, 1, long.MaxValue)] long version)
         {
             var root = new AggregateRootEntityStub();
             var sut = new Aggregate(identifier, version, root);
