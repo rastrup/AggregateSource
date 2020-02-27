@@ -11,6 +11,6 @@
     <ProjectReference Include="..\..\Core\AggregateSource\AggregateSource.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="CompareNETObjects" Version="4.65.0" />
+    <PackageReference Include="CompareNETObjects" Version="4.56.0" />
   </ItemGroup>
 </Project>

@@ -23,7 +23,7 @@
     <ProjectReference Include="..\AggregateSource.Testing\AggregateSource.Testing.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit" Version="2.2.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Content\XunitAssertionExtensions.cs" />
