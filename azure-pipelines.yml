@@ -26,7 +26,8 @@ steps:
   displayName: 'dotnet test'
   inputs:
     command: 'test'
-    projects: '**/*.Tests.csproj;**/*.IntegratedTests.dll'
+    projects: '**/*.Tests.csproj;**/*.IntegratedTests.dll;**/AggregateSource.Content.*.csproj'
+    nobuild: true
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet pack'
