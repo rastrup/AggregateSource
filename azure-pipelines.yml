@@ -15,8 +15,6 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- task: NuGetToolInstaller@1
-
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build'
   inputs:
@@ -25,11 +23,13 @@ steps:
     projects: '**/*.csproj'
 
 - task: DotNetCoreCLI@2
+  displayName: 'dotnet test'
   inputs:
     command: 'test'
-    projects: '**/*.Tests.csproj;**\*.IntegratedTests.dll'
+    projects: '**/*.Tests.csproj;**/*.IntegratedTests.dll'
 
 - task: DotNetCoreCLI@2
+  displayName: 'dotnet pack'
   inputs:
     command: 'pack'
     packagesToPack: '**/AggregateSource.*.csproj;!**/*.Tests.csproj'
