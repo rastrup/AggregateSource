@@ -17,23 +17,21 @@ variables:
 steps:
 - task: NuGetToolInstaller@1
 
-- task: NuGetCommand@2
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet build'
   inputs:
-    restoreSolution: '$(solution)'
+    command: 'build'
+    arguments: '--configuration $(buildConfiguration)'
+    projects: '**/*.csproj'
 
-- task: VSBuild@1
+- task: DotNetCoreCLI@2
   inputs:
-    solution: '$(solution)'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    command: 'test'
+    projects: '**/*.Tests.csproj;**\*.IntegratedTests.dll'
 
-- task: VSTest@2
+- task: DotNetCoreCLI@2
   inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-    testSelector: 'testAssemblies'
-    testAssemblyVer2: |
-      **\*.Tests.dll
-      **\*.IntegratedTests.dll
-      !**\*TestAdapter.dll
-      !**\obj\**
+    command: 'pack'
+    packagesToPack: '**/AggregateSource.*.csproj;!**/*.Tests.csproj'
+    nobuild: true
+    versioningScheme: 'off'
