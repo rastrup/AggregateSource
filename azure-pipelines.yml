@@ -26,13 +26,13 @@ steps:
   displayName: 'dotnet test'
   inputs:
     command: 'test'
-    projects: '**/*.Tests.csproj;**/*.IntegratedTests.dll;**/AggregateSource.Content.*.csproj'
+    projects: '**/*.Tests.csproj;**/*.IntegratedTests.csproj;**/AggregateSource.Content.*.csproj'
     nobuild: true
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet pack'
   inputs:
     command: 'pack'
-    packagesToPack: '**/AggregateSource.*.csproj;!**/*.Tests.csproj'
+    packagesToPack: '**/AggregateSource.*.csproj;!**/*.Tests.csproj;!**/*.IntegratedTests.csproj;!**/AggregateSource.Content.*.csproj'
     nobuild: true
     versioningScheme: 'off'
